@@ -1,0 +1,46 @@
+<?xml version ='1.0' encoding ='UTF-8'?>
+<definitions name='HelloWorld' 
+  targetNamespace='http://example.org/HelloWorld' 
+  xmlns:tns=' http://example.org/HelloWorld ' 
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema' 
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+  xmlns='http://schemas.xmlsoap.org/wsdl/'>
+
+<message name='getHelloWorldRequest'>
+  <part name='whatKindOfWorld' type='xsd:string'/>
+  <part name='whatKindOfDay' type='xsd:string'/>
+</message>
+<message name='getHelloWorldResponse'>
+  <part name='Result' type='xsd:string'/>
+</message>
+
+<portType name='HelloWorldPortType'>
+  <operation name='answerMe'>
+    <input message='tns:getHelloWorldRequest'/>
+    <output message='tns:getHelloWorldResponse'/>
+  </operation>
+</portType>
+
+<binding name='HelloWorldBinding' type='tns:HelloWorldPortType'>
+  <soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='answerMe'>
+    <soap:operation soapAction='urn:localhost-HelloWorld#answerMe'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:localhost-HelloWorld' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:localhost-HelloWorld' 
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>
+</binding>
+
+<service name='HelloWorldService'>
+  <port name='HelloWorldPort' binding='HelloWorldBinding'>
+    <soap:address location='http://localhost/SOAPtest/helloserver.php'/>
+  </port>
+</service>
+</definitions>

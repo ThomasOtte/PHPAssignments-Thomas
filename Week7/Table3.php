@@ -26,9 +26,39 @@
                   <tbody>
                   <?php
                    include 'Connect.php';
-                   $pdo = Connect::connect();
+                   $pdo = Connect::connect();                   
                    $sql = 'SELECT * FROM employee GROUP BY proid ASC';
-                       
+                   
+                   $enablejson = false; // set to true to enable json encodeing
+                   if ($enablejson == true)
+                   {
+                   foreach ($pdo->query($sql) as $row) 
+                   {
+                   echo json_encode($row). "</br>";
+                   echo json_encode($row,JSON_FORCE_OBJECT). "</br>";
+                   echo json_encode($row,JSON_PRETTY_PRINT). "</br>";
+                   echo json_encode($row,JSON_UNESCAPED_SLASHES). "</br>";
+                   
+                   echo "</br></br>";
+                   
+                   class RowValue implements JsonSerializable {
+                   	public function __construct(array $row) {
+                   		$this->array = $row;
+                   	}
+                   
+                   	public function jsonSerialize() {
+                   		return $this->array;
+                   	}
+                   }
+                   echo json_encode(new RowValue($row), JSON_PRETTY_PRINT);
+                   }
+                   
+                   echo "</br></br>";
+                   
+                   $encoded = json_encode($row);
+                   var_dump(json_decode($encoded, true));
+                   var_dump(json_decode($encoded, false));
+                   }
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
                             echo '<td>'. $row['name'] . '</td>';

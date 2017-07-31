@@ -26,7 +26,7 @@
                    include 'Connect.php';
                    $pdo = Connect::connect();
                    $sql = 'SELECT * FROM project ORDER BY id ASC';
-                       
+                        
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
                             echo '<td>'. $row['name'] . '</td>';

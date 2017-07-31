@@ -19,7 +19,7 @@
     if ( !empty($_POST)) {
 
         $name = $_POST['name'];
-        $startdate = date("Y-m-d");
+        $startdate = date("Y-m-d h:m:s");
 
 
         $valid = true;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 31 jul 2017 om 14:28
+-- Gegenereerd op: 31 jul 2017 om 16:12
 -- Serverversie: 5.7.9
 -- PHP-versie: 7.0.0
 
@@ -33,7 +33,14 @@ CREATE TABLE IF NOT EXISTS `company` (
   `location` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `company`
+--
+
+INSERT INTO `company` (`id`, `name`, `location`, `address`) VALUES
+(3, 'dafa', 'adfa', 'adf');
 
 -- --------------------------------------------------------
 
@@ -52,7 +59,14 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `email` varchar(255) NOT NULL,
   `age` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `employee`
+--
+
+INSERT INTO `employee` (`id`, `supid`, `proid`, `name`, `supname`, `proname`, `email`, `age`) VALUES
+(5, 6, NULL, 'Bob Bobsen', 'adfa', 'N/A', 'a@b.com', 9);
 
 -- --------------------------------------------------------
 
@@ -66,9 +80,16 @@ CREATE TABLE IF NOT EXISTS `project` (
   `empid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `empname` varchar(255) NOT NULL,
-  `startdate` date NOT NULL,
+  `startdate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `project`
+--
+
+INSERT INTO `project` (`id`, `empid`, `name`, `empname`, `startdate`) VALUES
+(2, 5, 'fer', 'Bob Bobsen', '2017-07-31 02:07:51');
 
 -- --------------------------------------------------------
 
@@ -86,7 +107,14 @@ CREATE TABLE IF NOT EXISTS `supervisor` (
   `age` int(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `compid` (`compid`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `supervisor`
+--
+
+INSERT INTO `supervisor` (`id`, `compid`, `name`, `compname`, `email`, `age`) VALUES
+(6, 3, 'adfa', 'dafa', 'a@b.com', 5);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

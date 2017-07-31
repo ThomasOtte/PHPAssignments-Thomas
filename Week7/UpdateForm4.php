@@ -1,7 +1,7 @@
-<?php 
+<?php
 //require 'database.php';
 $id = 0;
- 
+
 if ( !empty($_GET['id'])) {
 	$id = $_REQUEST['id'];
 }
@@ -20,31 +20,19 @@ if ( !empty($_GET['id'])) {
      
                 <div class="span10 offset1">
                     <div class="row">
-                        <h3>Update a Company</h3>
+                        <h3>Update a Project</h3>
                     </div>
              
-                    <form class="form-horizontal" action="UpdateScript1.php?id=<?php echo $id?>" method="post">
+                    <form class="form-horizontal" action="UpdateScript4.php?id=<?php echo $id?>" method="post">
                       <div class="control-group">
                         <label class="control-label">Name</label>
                         <div class="controls">
                             <input name="name" type="text"  placeholder="Name">
                         </div>
                       </div>
-                      <div class="control-group">
-                        <label class="control-label">Location</label>
-                        <div class="controls">
-                            <input name="location" type="text" placeholder="Location">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Address</label>
-                        <div class="controls">
-                            <input name="address" type="text"  placeholder="Address">
-                        </div>
-                      </div>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Update</button>
-                          <a class="btn" href="Table1.php">Back</a>
+                          <a class="btn" href="Table3.php">Back</a>
                         </div>
                     </form>
                 </div>

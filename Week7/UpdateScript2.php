@@ -7,53 +7,59 @@
     }
      
     if ( null==$id ) {
-        header("Location: Table1.php");
+        header("Location: Table2.php");
     }
      
     if ( !empty($_POST)) {
 
         $nameError = null;
-        $locationError = null;
-        $addressError = null;
+        $emailError = null;
+        $ageError = null;
          
 
         $name = $_POST['name'];
-        $location = $_POST['location'];
-        $address = $_POST['address'];
+        $email = $_POST['email'];
+        $age = $_POST['age'];
          
 
         $valid = true;
-        if (empty($name)) {
+     if (empty($name)) {
             $valid = false;
         }
          
-        if (empty($location)) {
+        if (empty($email)) {
             $valid = false;
-        } 
+        } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
+            $valid = false;
+        }
+         
+        if (empty($age)) {
+            $valid = false;
+        }
         
-        if (empty($address)) {
-            $valid = false;
+        if (!is_numeric($age)) {
+        	$valid = false;
         }
          
         if ($valid) {
             $pdo = Connect::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE company  set name = ?, location = ?, address =? WHERE id = ?";
+            $sql = "UPDATE supervisor set name = ?, email = ?, age =? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($name,$location,$address,$id));
+            $q->execute(array($name,$email,$age,$id));
             Connect::disconnect();
-            header("Location: Table1.php");
+            header("Location: Table2.php");
         }
     } else {
         $pdo = Connect::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM company where id = ?";
+        $sql = "SELECT * FROM supervisor where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(PDO::FETCH_ASSOC);
         $name = $data['name'];
-        $location = $data['location'];
-        $address = $data['address'];
+        $email = $data['email'];
+        $age = $data['age'];
         Connect::disconnect();
     }
 ?>

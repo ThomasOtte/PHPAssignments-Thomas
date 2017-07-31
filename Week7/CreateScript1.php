@@ -16,17 +16,14 @@
 
         $valid = true;
         if (empty($name)) {
-            $nameError = 'Please enter Name';
             $valid = false;
         }
          
         if (empty($location)) {
-            $locationError = 'Please enter Location';
             $valid = false;
         }
          
         if (empty($address)) {
-            $addressError = 'Please enter Address';
             $valid = false;
         }
 
@@ -34,10 +31,14 @@
             $pdo = Connect::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO company (name,location,address) values(?, ?, ?)";
+            //$sql = $pdo->query("INSERT INTO company (name,location,address) values(?, ?, ?)");
             $q = $pdo->prepare($sql);
             $q->execute(array($name,$location,$address));
             Connect::disconnect();
             header("Location: Table1.php");
+        }
+        else {
+        	header("Location: CreateForm1.php");
         }
     }
 ?>

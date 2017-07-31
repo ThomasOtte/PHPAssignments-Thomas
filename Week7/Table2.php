@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if (isset($_SESSION["dupe"]))
+{
+	echo $_SESSION["dupe"];
+	$_SESSION["dupe"] = "";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +18,16 @@
 <body>
     <div class="container">
             <div class="row">
-                <h3>Company</h3>
+                <h3>Supervisor</h3>
             </div>
             <div class="row">
-               <p>
-                    <a href="CreateForm1.php" class="btn btn-success">Create</a>
-               </p>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Location</th>
-                      <th>Address</th>
+                      <th>Company Name</th>
+                      <th>E-mail</th>
+                      <th>Age</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -28,23 +35,22 @@
                   <?php
                    include 'Connect.php';
                    $pdo = Connect::connect();
-                   $sql = 'SELECT * FROM company ORDER BY id ASC';
-                   
-                   //$sql = $pdo->query("SELECT * FROM company ORDER BY id ASC");
+                   $sql = 'SELECT * FROM supervisor ORDER BY id ASC';
                        
                    foreach ($pdo->query($sql) as $row) {
                             echo '<tr>';
                             echo '<td>'. $row['name'] . '</td>';
-                            echo '<td>'. $row['location'] . '</td>';
-                            echo '<td>'. $row['address'] . '</td>';
+                            echo '<td>'. $row['compname'] . '</td>';
+                            echo '<td>'. $row['email'] . '</td>';
+                            echo '<td>'. $row['age'] . '</td>';
                              echo '<td width=250>';
-                                echo '<a class="btn btn-info" href="Read1.php?id='.$row['id'].'">Read</a>';
+                                echo '<a class="btn btn-info" href="Read2.php?id='.$row['id'].'">Read</a>';
                                 echo ' ';
-                                echo '<a class="btn btn-warning" href="UpdateForm1.php?id='.$row['id'].'">Update</a>';
+                                echo '<a class="btn btn-warning" href="UpdateForm2.php?id='.$row['id'].'">Update</a>';
                                 echo ' ';
-                                echo '<a class="btn btn-danger" href="Delete1.php?id='.$row['id'].'">Delete</a>';
+                                echo '<a class="btn btn-danger" href="Delete2.php?id='.$row['id'].'">Delete</a>';
                                 echo ' ';
-                                echo '<a class="btn btn-success" href="CreateForm2.php?id='.$row['id'].'">Add Supervisor</a>';
+                                echo '<a class="btn btn-success" href="CreateForm3.php?id='.$row['id'].'">Add Employee</a>';
                                 echo '</td>';
                             echo '</tr>';
                    }

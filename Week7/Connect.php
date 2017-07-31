@@ -19,6 +19,7 @@ class Connect
 			try
 			{
 				self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
+				// self::$cont = new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword, self::$dbName);
 			}
 			catch(PDOException $e)
 			{

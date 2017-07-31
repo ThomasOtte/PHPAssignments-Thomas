@@ -1,0 +1,11 @@
+CREATE DATABASE week7;
+
+CREATE TABLE IF NOT EXISTS `company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+DROP TABLE IF EXISTS `company`;
+  

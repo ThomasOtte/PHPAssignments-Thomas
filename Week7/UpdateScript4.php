@@ -7,53 +7,40 @@
     }
      
     if ( null==$id ) {
-        header("Location: Table1.php");
+        header("Location: Table4.php");
     }
      
     if ( !empty($_POST)) {
 
         $nameError = null;
-        $locationError = null;
-        $addressError = null;
          
-
-        $name = $_POST['name'];
-        $location = $_POST['location'];
-        $address = $_POST['address'];
-         
+        $name = $_POST['name'];         
 
         $valid = true;
-        if (empty($name)) {
-            $valid = false;
-        }
-         
-        if (empty($location)) {
-            $valid = false;
-        } 
-        
-        if (empty($address)) {
+     if (empty($name)) {
             $valid = false;
         }
          
         if ($valid) {
             $pdo = Connect::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE company  set name = ?, location = ?, address =? WHERE id = ?";
+            $sql = "UPDATE project set name = ? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($name,$location,$address,$id));
+            $q->execute(array($name, $id));
+            $sql2 = "UPDATE employee set proname = ? WHERE proid = ?";
+            $q2 = $pdo->prepare($sql2);
+            $q2->execute(array($name, $id));
             Connect::disconnect();
-            header("Location: Table1.php");
+            header("Location: Table4.php");
         }
     } else {
         $pdo = Connect::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM company where id = ?";
+        $sql = "SELECT * FROM project where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(PDO::FETCH_ASSOC);
         $name = $data['name'];
-        $location = $data['location'];
-        $address = $data['address'];
         Connect::disconnect();
     }
 ?>

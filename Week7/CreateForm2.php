@@ -1,3 +1,18 @@
+<?php 
+$id = null;
+if ( !empty($_GET['id'])) {
+	$id = $_REQUEST['id'];
+}
+ 
+if ( null==$id ) {
+	header("Location: Table1.php");
+}
+session_start();
+$_SESSION["compid"] = $id;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,26 +26,26 @@
      
                 <div class="span10 offset1">
                     <div class="row">
-                        <h3>Add a Company</h3>
+                        <h3>Add a Supervisor</h3>
                     </div>
              
-                    <form class="form-horizontal" action="CreateScript1.php" method="post">
+                    <form class="form-horizontal" action="CreateScript2.php" method="post">
                       <div class="control-group">
-                        <label class="control-label">Company Name</label>
+                        <label class="control-label">Supervisor Name</label>
                         <div class="controls">
                             <input name="name" type="text"  placeholder="Name">
                         </div>
                       </div>
                       <div class="control-group">
-                        <label class="control-label">Location</label>
+                        <label class="control-label">E-mail</label>
                         <div class="controls">
-                            <input name="location" type="text" placeholder="Location">
+                            <input name="email" type="text" placeholder="E-Mail">
                         </div>
                       </div>
                       <div class="control-group">
-                        <label class="control-label">Address</label>
+                        <label class="control-label">Age</label>
                         <div class="controls">
-                            <input name="address" type="text"  placeholder="Address">
+                            <input name="age" type="text"  placeholder="Age">
                         </div>
                       </div>
                       <div class="form-actions">

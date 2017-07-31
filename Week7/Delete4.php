@@ -12,12 +12,11 @@
 
         $pdo = Connect::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM company  WHERE id = ?";
-        //$sql = $pdo->query("DELETE FROM company  WHERE id = ?");
+        $sql = "DELETE FROM project WHERE id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         Connect::disconnect();
-        header("Location: Table1.php");
+        header("Location: Table4.php");
          
     }
 ?>
@@ -35,15 +34,15 @@
      
                 <div class="span10 offset1">
                     <div class="row">
-                        <h3>Delete a Company</h3>
+                        <h3>Delete a Project</h3>
                     </div>
                      
-                    <form class="form-horizontal" action="Delete1.php" method="post">
+                    <form class="form-horizontal" action="Delete4.php" method="post">
                       <input type="hidden" name="id" value="<?php echo $id;?>"/>
-                      <p class="alert alert-error">Are you sure you want to delete this company?</p>
+                      <p class="alert alert-error">Are you sure you want to delete this project?</p>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-danger">Yes</button>
-                          <a class="btn btn-info" href="Table1.php">No</a>
+                          <a class="btn btn-info" href="Table4.php">No</a>
                         </div>
                     </form>
                 </div>
